@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'reading_hub', 
     'likes', 
     'users', 
+    'articles',
     'tags'
 ]
 

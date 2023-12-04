@@ -18,7 +18,7 @@ class Author(models.Model):
 
 class Article(models.Model):
     title = models.CharField(max_length=200, unique=True)
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
     image_url = models.CharField(max_length=2083, default="-")
     content = models.TextField()  # Store the article content as HTML or Markdown
     category = models.ForeignKey(Category, on_delete=models.PROTECT, default=1)

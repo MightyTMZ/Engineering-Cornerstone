@@ -13,7 +13,7 @@ class Author(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     
     def __str__(self) -> str:
-        return self.user.first_name + self.user.last_name
+        return self.user.first_name + " " + self.user.last_name
     
 
 class Article(models.Model):
@@ -26,7 +26,7 @@ class Article(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.title
+        return self.title + " " + self.slug
 
 # url structure:
 # engineeringcornerstone.com/median_form(e.g. article, blog, etc)/created_at_date/slug

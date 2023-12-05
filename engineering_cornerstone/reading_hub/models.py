@@ -25,9 +25,14 @@ class Article(models.Model):
     author = models.ForeignKey(Author, on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    trending = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title + " " + self.slug
+
+    
+    class Meta:
+        ordering = ['-created_at']
 
 # url structure:
 # engineeringcornerstone.com/median_form(e.g. article, blog, etc)/created_at_date/slug

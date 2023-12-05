@@ -32,7 +32,7 @@ class Article(models.Model):
     trending = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.title + " - " + str(self.author)
+        return self.title + " - " + str(self.author) + f" - (Trending: {self.trending})"
 
     
     class Meta:

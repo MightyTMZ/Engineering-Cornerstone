@@ -11,8 +11,7 @@ const LandingPage = () => {
       {/* Header Section */}
       <header className="header">
         <div className="container">
-          <h1>Engineering Cornerstone</h1>
-          <p>Your Source for Engineering News</p>
+          <p className="pt-3">Your Source for Engineering news, insights and more!</p>
         </div>
       </header>
 
@@ -21,7 +20,7 @@ const LandingPage = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-6">
-              <h2 className="mb-3">Latest News</h2>
+              <h2 className="mb-3">Latest</h2>
               <h5>Trending article 1</h5> {/* Make sure to change this to a link element so the user can click on it */}
               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error dicta quas possimus asperiores natus recusandae doloribus maiores est!</p>
               <h5>Trending article 2</h5> {/* Make sure to change this to a link element so the user can click on it */}
@@ -66,17 +65,29 @@ const LandingPage = () => {
         <div className="container">
           <h2 className="mb-4">Key Features</h2>
           <div className="row">
-            <div className="col-lg-4">
+            <div className="col-lg-4 mt-4">
               <h4>Breaking News</h4>
-              <p>Stay updated with the latest breaking news in the engineering world.</p>
+              <p>Stay up-to-date with the latest breaking news in the fast-evolving engineering world we have today.</p>
             </div>
-            <div className="col-lg-4">
+            <div className="col-lg-4 mt-4">
               <h4>In-Depth Analysis</h4>
               <p>Explore in-depth articles and analysis on engineering topics and innovations.</p>
             </div>
-            <div className="col-lg-4">
+            <div className="col-lg-4 mt-4">
               <h4>Community Engagement</h4>
               <p>Connect with fellow engineers and professionals in our vibrant community.</p>
+            </div>
+            <div className="col-lg-4 mt-4">
+              <h4>Incredible Insights</h4>
+              <p>Hear the insighful voices and inspiration of aspiring, current, or former engineers. </p>
+            </div>
+            <div className="col-lg-4 mt-4">
+              <h4>Learning</h4>
+              <p>Learn about how the inventions of the past centuries brought us to the engineering world we have today!</p>
+            </div>
+            <div className="col-lg-4 mt-4">
+               <h4>Innovation Unveiled</h4>
+               <p>Discover the latest tech trends reshaping engineering and how it can inspire you!</p>
             </div>
           </div>
         </div>

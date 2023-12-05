@@ -1,12 +1,14 @@
 import './App.css'
-
+// import NavBar from './components/NavBar'
+import LandingPage from './components/LandingPage'
 
 function App() {
   return (
     <>
-      <h1>
-        Hello world
-      </h1>
+    <LandingPage/>
+      {/* <div className="container">
+        <NavBar></NavBar>
+  </div> */}
     </>
   )
 }

@@ -14,13 +14,17 @@ class Author(models.Model):
     
     def __str__(self) -> str:
         return self.user.first_name + " " + self.user.last_name
+
+
+class Engineer(models.Model):
+    pass
     
 
 class Article(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(unique=True)
     image_url = models.CharField(max_length=2083, default="-")
-    content = models.TextField()  # Store the article content as HTML or Markdown
+    content = models.TextField(max_length=10000)  # Store the article content as HTML or Markdown
     category = models.ForeignKey(Category, on_delete=models.PROTECT, default=1)
     author = models.ForeignKey(Author, on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now_add=True)

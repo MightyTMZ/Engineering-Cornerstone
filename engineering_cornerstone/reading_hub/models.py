@@ -22,7 +22,7 @@ class Engineer(models.Model):
 
 class Article(models.Model):
     title = models.CharField(max_length=200, unique=True)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(default="-")
     image_url = models.CharField(max_length=2083, default="-")
     content = models.TextField(max_length=10000)  # Store the article content as HTML or Markdown
     category = models.ForeignKey(Category, on_delete=models.PROTECT, default=1)
@@ -32,7 +32,7 @@ class Article(models.Model):
     trending = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.title + " " + self.slug
+        return self.title + " - " + str(self.author)
 
     
     class Meta:

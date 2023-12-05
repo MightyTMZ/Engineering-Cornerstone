@@ -17,6 +17,6 @@ class ArticleDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 class TrendingArticles(generics.ListCreateAPIView):
-    queryset = Article.objects.filter(trending=True)[:3] # there is only room for 3 trending articles on the landing page 
+    queryset = Article.objects.filter(trending=True) # [:3] 
     permission_classes = [IsAdminOrReadOnly]
     serializer_class = ArticleSerializer

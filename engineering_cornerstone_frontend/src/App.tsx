@@ -3,7 +3,7 @@ import './App.css';
 // Import NavBar and LandingPage if they are used later
 // import NavBar from './components/NavBar';
 // import LandingPage from './components/LandingPage';
-import Article from './components/Article';
+import Article from './components/Article/Article';
 
 function App() {
   const sampleArticle = {
@@ -40,11 +40,12 @@ function App() {
         </footer>
     `,
     author: "Tom Zhang",
-    createdAt: "2023-12-05T22:21:55.309582Z"
+    createdAt: "2023-12-05T22:21:55.309582Z", 
+    trending: true,
   };
 
   return (
-    <div className="container">
+    <div className={window.innerWidth > 800 ? 'container' : ''}>
       {/*<NavBar />*/}
       {/*<LandingPage />*/}
       <Article {...sampleArticle} />

@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from rest_framework import generics
+from rest_framework.generics import RetrieveAPIView
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView
 from .models import Article
@@ -13,18 +14,17 @@ class ArticleList(generics.ListCreateAPIView):
     serializer_class = ArticleSerializer
 
 
-class ArticleDetail(DetailView):
-    model = Article
+class ArticleDetail(RetrieveAPIView):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+    permission_classes = [IsAdminOrReadOnly]
 
-    def get_object(self, queryset=None):
-        # Retrieve the article based on the created_date and title_slug
-        created_date = self.kwargs['created_date']
-        title_slug = self.kwargs['title_slug']
+    def get_object(self):
+        created_at_date = self.kwargs['created_at_date']
+        slug = self.kwargs['slug']
 
-        # Convert created_date to the format "yyyy-mm-dd"
-        formatted_date = datetime.strptime(created_date, '%Y%m%d').strftime('%Y-%m-%d')
-
-        return get_object_or_404(Article, created_at__startswith=formatted_date, slug=title_slug)
+        # Use __date to compare the date part only
+        return get_object_or_404(Article, created_at__date=created_at_date, slug=slug)
 
 
 class TrendingArticles(generics.ListCreateAPIView):

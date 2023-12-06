@@ -1,7 +1,6 @@
 import NavBar from "./NavBar";
 
-
-const LandingPage = () => {
+const HomePage = () => {
   // Sample data for the recent articles
   const recentArticles = [
     { title: 'Article 1', content: 'Content for Article 1' },
@@ -10,8 +9,7 @@ const LandingPage = () => {
   ];
 
   return (
-    <div className="landing-page">    
-
+    <div className="landing-page">
       {/* Header Section */}
       <header className="header">
         <div className="container">
@@ -143,4 +141,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+export default HomePage;

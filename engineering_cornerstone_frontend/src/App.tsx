@@ -48,7 +48,7 @@ function App() {
     <div className={window.innerWidth > 800 ? 'container' : ''}>
       {/*<NavBar />*/}
       {/*<LandingPage />*/}
-      <Article {...sampleArticle} />
+      {/*<Article {...sampleArticle} />*/}
     </div>
   );
 }

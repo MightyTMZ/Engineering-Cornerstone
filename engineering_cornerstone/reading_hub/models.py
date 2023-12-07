@@ -22,6 +22,14 @@ class Author(models.Model):
     
 
 class Article(models.Model):
+    @property
+    def created_at_date(self):
+        return self.created_at.date()
+
+    '''@property
+    def last_updated_date(self):
+        return self.updated_at.date()'''
+    
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(default="-", editable=False, max_length=250)
     image_url = models.CharField(max_length=2083, default="-")
@@ -43,6 +51,7 @@ class Article(models.Model):
     def get_article_url(self):
         # Construct the URL using created_at and slugified title
         return f'/{self.created_at.date()}/{self.slug}/'
+
 
 
 # url structure:

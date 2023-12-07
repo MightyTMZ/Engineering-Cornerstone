@@ -1,17 +1,53 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import DOMPurify from 'dompurify';
 import './Article.css';
 
-interface ArticleProps {
+{/* interface ArticleProps {
   title: string;
+  slug: string;
   image_url: string;
+  category: string;
   content: string;
   author: string;
-  createdAt: string; // Assuming createdAt is a string, you might want to use a Date type
-  trending?: boolean; // Assuming trending is optional and boolean
-}
+  createdAt: string;
+  createdAt_date: string;
+  trending?: boolean;
+}*/}
 
-const Article: React.FC<ArticleProps> = ({ title, image_url, content, author, createdAt, trending }) => {
+const Article: React.FC = () => {
+  
+
+  const { created_at_date, slug } = useParams();
+  const [article, setArticle] = useState<any>(null);
+
+  useEffect(() => {
+    fetch(`http://127.0.0.1:8000/reading-hub/articles/${created_at_date}/${slug}/`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setArticle(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching article data:", error);
+      });
+  }, []);
+
+  if (!article) {
+    return <p>Loading...</p>;
+  }
+
+  let title = article.title;
+  let author = article.author;
+  let trending = article.trending;
+  let image_url = article.image_url;
+  let content = article.content;
+  let createdAt = article.created_at_date;
+  
   const createMarkup = () => {
     return { __html: DOMPurify.sanitize(content) };
   };

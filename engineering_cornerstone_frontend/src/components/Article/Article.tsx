@@ -15,9 +15,8 @@ import './Article.css';
   trending?: boolean;
 }*/}
 
-const Article: React.FC = () => {
-  
 
+const Article: React.FC = () => {
   const { created_at_date, slug } = useParams();
   const [article, setArticle] = useState<any>(null);
 
@@ -42,12 +41,12 @@ const Article: React.FC = () => {
   }
 
   let title = article.title;
-  let author = article.author;
+  let authors = article.authors;
   let trending = article.trending;
   let image_url = article.image_url;
   let content = article.content;
   let createdAt = article.created_at_date;
-  
+
   const createMarkup = () => {
     return { __html: DOMPurify.sanitize(content) };
   };
@@ -59,7 +58,7 @@ const Article: React.FC = () => {
         {trending && (
           <span style={{ color: 'red', fontWeight: 'bold' }}>TRENDING</span>
         )}
-        <p className="mt-4">By {author}</p>
+        <p className="mt-4">By {authors.map((author: any) => `${author.first_name} ${author.last_name}`).join(', ')}</p>
         <img src={image_url} alt="Image jumbotron" className="img-fluid mb-3" />
         <div dangerouslySetInnerHTML={createMarkup()} />
         <p>Published on: {new Date(createdAt).toLocaleDateString()}</p>

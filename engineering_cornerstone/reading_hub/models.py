@@ -37,13 +37,13 @@ class Article(models.Model):
     image_url = models.CharField(max_length=2083, default="-")
     content = models.TextField(max_length=10000)
     category = models.ManyToManyField(Category)
-    author = models.ManyToManyField(Author)
+    authors = models.ManyToManyField(Author)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     trending = models.BooleanField(default=False)
 
     def __str__(self) -> str:
-        return f"{self.title} - by {self.author} - Trending {self.trending} - {self.created_at}"
+        return f"{self.title} - by {self.authors} - Trending {self.trending} - {self.created_at}"
 
     def save(self, *args, **kwargs):
         # Update the slug using the title when the article is saved

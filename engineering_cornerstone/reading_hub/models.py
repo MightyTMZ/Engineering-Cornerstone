@@ -11,10 +11,12 @@ class Category(models.Model):
 
 
 class Author(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    profile_picture_url = models.CharField(max_length=2083, editable=False)
     
     def __str__(self) -> str:
-        return self.user.first_name + " " + self.user.last_name
+        return self.first_name + " " + self.last_name
 
 
 """class Engineer(models.Model):
@@ -34,8 +36,8 @@ class Article(models.Model):
     slug = models.SlugField(default="-", editable=False, max_length=250)
     image_url = models.CharField(max_length=2083, default="-")
     content = models.TextField(max_length=10000)
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, default=1)
-    author = models.ForeignKey(Author, on_delete=models.PROTECT)
+    category = models.ManyToManyField(Category)
+    author = models.ManyToManyField(Author)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     trending = models.BooleanField(default=False)

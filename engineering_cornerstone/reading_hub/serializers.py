@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Article, Author, Category
+from users.serializers import *
 
 '''class AuthorSerializer(serializers.Serializer):
     class Meta:
@@ -10,6 +11,7 @@ from .models import Article, Author, Category
 class ArticleSerializer(serializers.ModelSerializer):
     created_at_date = serializers.DateField(read_only=True)
     #last_updated_date = serializers.DateField(source="updated_at.date", read_only=True)
+    "author = UserSerializer()"
 
     class Meta:
         model = Article

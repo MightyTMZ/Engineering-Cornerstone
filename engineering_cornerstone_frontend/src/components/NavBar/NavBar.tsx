@@ -15,6 +15,9 @@ const NavBar = () => {
                     <li className="nav-item">
                         <a className="nav-link" href="/">Home</a>
                     </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="/articles/search/">Search</a>
+                    </li>
                     <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" href="#" id="megaMenuDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">

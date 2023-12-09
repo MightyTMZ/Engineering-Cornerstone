@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, filters
 from rest_framework.generics import RetrieveAPIView
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView
@@ -8,10 +8,13 @@ from datetime import datetime
 from .serializers import ArticleSerializer
 from .permissions import *
 
+
 class ArticleList(generics.ListCreateAPIView):
     queryset = Article.objects.all()
     permission_classes = [IsAdminOrReadOnly]
     serializer_class = ArticleSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['title', 'content', 'category__title', 'authors__first_name', 'authors__last_name']
 
 
 class ArticleDetail(RetrieveAPIView):
@@ -33,10 +36,6 @@ class TrendingArticles(generics.ListCreateAPIView):
     serializer_class = ArticleSerializer
 
 
-class TrendingArticlesLatest(generics.ListCreateAPIView):
-    queryset = Article.objects.filter(trending=True)[:3] 
-    permission_classes = [IsAdminOrReadOnly]
-    serializer_class = ArticleSerializer
 
 
 

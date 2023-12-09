@@ -58,15 +58,15 @@ const Article: React.FC = () => {
     <>
       <div className="container-fluid mb-5">       
          <NavBar/>
-
-        <div className={window.innerWidth > 800 ? 'container' : 'article-container'} style={{ paddingRight: '20%', paddingLeft: '20%'}}>
+{/*  */}
+        <div className={window.innerWidth > 800 ? 'container' : 'article-container'} style={{ paddingRight: '20%', paddingLeft: '20%', marginTop: "2rem",}}>
           <h1>{title}</h1>
           <p>{createdAt}</p>
           {trending && (
             <span style={{ color: 'red', fontWeight: 'bold' }}>TRENDING</span>
           )}
           <p className="mt-4">By {authors.map((author: any) => `${author.first_name} ${author.last_name}`).join(', ')}</p>
-          <img src={image_url} alt="Image jumbotron" className="img-fluid mb-3" />
+          <img src={image_url} alt="Image jumbotron" className="img-fluid mb-3" style={{width: "100%"}}/>
           <article dangerouslySetInnerHTML={createMarkup()}/>
       
         </div>

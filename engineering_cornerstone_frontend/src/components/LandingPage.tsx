@@ -1,4 +1,7 @@
-import NavBar from "./NavBar";
+import { useState } from "react";
+import { useEffect } from "react";
+import NavBar from "./NavBar/NavBar";
+import "./LandingPage.css"
 
 
 const LandingPage = () => {
@@ -8,6 +11,23 @@ const LandingPage = () => {
     { title: 'Article 2', content: 'Content for Article 2' },
     { title: 'Article 3', content: 'Content for Article 3' },
   ];
+
+  const [trendingArticles, setTrendingArticles] = useState([]);
+  useEffect(() => {
+    fetch(`http://127.0.0.1:8000/reading-hub/articles/trending/`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setTrendingArticles(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching article data:", error);
+      });
+  }, []);
 
   return (
     <div className="landing-page">    
@@ -21,29 +41,32 @@ const LandingPage = () => {
       </header>
 
       {/* Main Content Section */}
-      <section className="main-content">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-6">
-              <h2 className="mb-3">Latest</h2>
-              <h5>Trending article 1</h5> {/* Make sure to change this to a link element so the user can click on it */}
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error dicta quas possimus asperiores natus recusandae doloribus maiores est!</p>
-              <h5>Trending article 2</h5> {/* Make sure to change this to a link element so the user can click on it */}
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error dicta quas possimus asperiores natus recusandae doloribus maiores est!</p>
-              <h5>Trending article 3</h5> {/* Make sure to change this to a link element so the user can click on it */}
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error dicta quas possimus asperiores natus recusandae doloribus maiores est!</p>
-            
-            </div>
-            <div className="col-lg-6">
-              <img
-                src="https://media.istockphoto.com/id/1154341677/photo/industry-and-technology-concept-industry-4-0.jpg?s=612x612&w=0&k=20&c=UgbGbl1oTYa837cA2UQcteWD3Rt_W1Pzujo_0i9Q82E="
-                alt="Engineering Image"
-                className="img-fluid"
-              />
-            </div>
+      <section className="trending-articles">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-6">
+            <h2 className="mb-3">Latest</h2>
+            {trendingArticles.slice(0, 3).map((article) => (
+              <div key={article.id}>
+                <a href={`articles/${article.created_at_date}/${article.slug}`}
+                className="trending-article"
+                >
+                  {article.title}
+                </a>
+                <p style={{ overflow: 'hidden', height: '50px' }}>{article.content}</p>
+              </div>
+            ))}
+          </div>
+          <div className="col-lg-6">
+            <img
+              src="https://media.istockphoto.com/id/1154341677/photo/industry-and-technology-concept-industry-4-0.jpg?s=612x612&w=0&k=20&c=UgbGbl1oTYa837cA2UQcteWD3Rt_W1Pzujo_0i9Q82E="
+              alt="Engineering Image"
+              className="img-fluid"
+            />
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* Recent Articles Section */}
       <section className="recent-articles">

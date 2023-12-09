@@ -31,3 +31,12 @@ class TrendingArticles(generics.ListCreateAPIView):
     queryset = Article.objects.filter(trending=True) # [:3] 
     permission_classes = [IsAdminOrReadOnly]
     serializer_class = ArticleSerializer
+
+
+class TrendingArticlesLatest(generics.ListCreateAPIView):
+    queryset = Article.objects.filter(trending=True)[:3] 
+    permission_classes = [IsAdminOrReadOnly]
+    serializer_class = ArticleSerializer
+
+
+

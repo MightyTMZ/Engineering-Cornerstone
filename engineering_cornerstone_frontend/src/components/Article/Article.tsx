@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import DOMPurify from 'dompurify';
+import NavBar from "../NavBar/NavBar";
 import './Article.css';
 
 {/* interface ArticleProps {
@@ -40,6 +41,8 @@ const Article: React.FC = () => {
     return <p>Loading...</p>;
   }
 
+  
+
   let title = article.title;
   let authors = article.authors;
   let trending = article.trending;
@@ -52,18 +55,23 @@ const Article: React.FC = () => {
   };
 
   return (
-    <div className="container-fluid mt-5 mb-5">
-      <div className={window.innerWidth > 800 ? 'container' : 'article-container'} style={{ paddingRight: '20%', paddingLeft: '20%', paddingTop: '30px' }}>
-        <h2>{title}</h2>
-        {trending && (
-          <span style={{ color: 'red', fontWeight: 'bold' }}>TRENDING</span>
-        )}
-        <p className="mt-4">By {authors.map((author: any) => `${author.first_name} ${author.last_name}`).join(', ')}</p>
-        <img src={image_url} alt="Image jumbotron" className="img-fluid mb-3" />
-        <div dangerouslySetInnerHTML={createMarkup()} />
-        <p>Published on: {new Date(createdAt).toLocaleDateString()}</p>
+    <>
+      <div className="container-fluid mb-5">       
+         <NavBar/>
+
+        <div className={window.innerWidth > 800 ? 'container' : 'article-container'} style={{ paddingRight: '20%', paddingLeft: '20%'}}>
+          <h1>{title}</h1>
+          <p>{createdAt}</p>
+          {trending && (
+            <span style={{ color: 'red', fontWeight: 'bold' }}>TRENDING</span>
+          )}
+          <p className="mt-4">By {authors.map((author: any) => `${author.first_name} ${author.last_name}`).join(', ')}</p>
+          <img src={image_url} alt="Image jumbotron" className="img-fluid mb-3" />
+          <article dangerouslySetInnerHTML={createMarkup()}/>
+      
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -1,0 +1,29 @@
+.mega-menu {
+    width: 650px; /* Adjust the width of the mega menu as needed */
+}
+
+.mega-menu .row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.mega-menu .custom-col {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-bottom: 20px; /* Adjusted margin to add more space between columns */
+}
+
+.mega-menu h5 {
+    margin-bottom: 15px;
+}
+
+.mega-menu a {
+    display: block;
+    color: #212529;
+    text-decoration: none;
+    padding: 8px 0; /* Adjusted padding for more space */
+}
+
+.mega-menu a:hover {
+    background-color: #f8f9fa;
+}

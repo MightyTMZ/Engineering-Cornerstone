@@ -23,6 +23,15 @@ class Author(models.Model):
     pass"""
     
 
+
+lorem_ipsum_40_words = """
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore
+magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+"""
+
+
 class Article(models.Model):
     @property
     def created_at_date(self):
@@ -36,6 +45,7 @@ class Article(models.Model):
     slug = models.SlugField(default="-", editable=False, max_length=250)
     image_url = models.CharField(max_length=2083, default="-")
     content = models.TextField(max_length=10000)
+    content_just_text = models.TextField(max_length=10000, default=lorem_ipsum_40_words)
     category = models.ManyToManyField(Category)
     authors = models.ManyToManyField(Author)
     created_at = models.DateTimeField(auto_now_add=True)

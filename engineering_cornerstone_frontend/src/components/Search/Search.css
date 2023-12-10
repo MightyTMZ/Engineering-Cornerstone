@@ -1,0 +1,51 @@
+.search-result-card {
+    display: flex;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 20px;
+    transition: transform 0.2s;
+}
+
+.search-result-card:hover {
+    transform: scale(1.02);
+}
+
+.search-result-content {
+    flex: 1;
+    padding: 20px;
+}
+
+.search-result-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.search-result-meta {
+    font-size: 0.8rem;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.search-result-description {
+    font-size: 1rem;
+    color: #555;
+}
+
+.search-result-category {
+    font-size: 0.9rem;
+    color: #008080; /* Teal color, you can change it to your preferred color */
+    margin-top: 10px;
+}
+
+.search-result-image {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    margin-left: 20px; /* Adjust the margin to center the image horizontally */
+}

@@ -46,6 +46,11 @@ class Article(models.Model):
     image_url = models.CharField(max_length=2083, default="-")
     content = models.TextField(max_length=10000)
     content_just_text = models.TextField(max_length=10000, default=lorem_ipsum_40_words)
+    """On the home page, landing page, search results page, the article is rendered with the first 30-40 words
+    as part of the thumbnail. Since the "content" field of the article model class stores the markup, it cannot be used as
+    the thumbnail text, therefore, we created a field to store PURELY the content and not the markup for specific purposes in
+    the future.
+    """
     category = models.ManyToManyField(Category)
     authors = models.ManyToManyField(Author)
     created_at = models.DateTimeField(auto_now_add=True)

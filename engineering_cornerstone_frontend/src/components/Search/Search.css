@@ -22,6 +22,12 @@
     font-weight: bold;
     color: #333;
     margin-bottom: 10px;
+    transition: font-size 0.3s;
+}
+
+.search-result-title:hover {
+    color: darkblue;
+    font-size: 1.545rem;
 }
 
 .search-result-meta {

@@ -18,37 +18,43 @@ const Search = () => {
 
     // Fetch data from the backend based on the search query
     if (queryParam) {
-      fetch(`http://127.0.0.1:8000/reading-hub/articles/all/?search=${encodeURIComponent(queryParam)}`)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then((data) => {
-          setSearchResults(data);
-        })
-        .catch((error) => {
-          console.error("Error fetching article data:", error);
-        });
+      fetchSearchResults(queryParam);
     }
   }, [location.search]);
 
-  const handleInputChange = (e) => {
-    const inputValue = e.target.value;
-    setSearchQuery(inputValue);
+  const fetchSearchResults = (query) => {
+    fetch(`http://127.0.0.1:8000/reading-hub/articles/all/?search=${encodeURIComponent(query)}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setSearchResults(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching article data:", error);
+      });
+  };
 
-    // Update the URL when the user types in the search bar
-    navigate(`/search?q=${encodeURIComponent(inputValue)}`);
+  const handleInputChange = (e) => {
+    setSearchQuery(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const formattedQuery = searchQuery.replace(/\s+/g, '+');
-    
-    // Append the search query to the URL
+
+    // Fetch data from the backend based on the search query
+    fetchSearchResults(formattedQuery);
+
+    // Update the URL when the user submits the form
     navigate(`/search?q=${formattedQuery}`);
   };
+
+  // we inplemented a mechanism which only retrieves a query set when the user submits the search
+  // this way we don't get an overloaded amount of requests on the backend server
 
   return (
     <div className="container">

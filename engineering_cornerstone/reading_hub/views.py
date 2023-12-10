@@ -10,7 +10,7 @@ from .permissions import *
 
 
 class ArticleList(generics.ListCreateAPIView):
-    queryset = Article.objects.all()
+    queryset = Article.objects.all().order_by('-created_at')
     permission_classes = [IsAdminOrReadOnly]
     serializer_class = ArticleSerializer
     filter_backends = [filters.SearchFilter]

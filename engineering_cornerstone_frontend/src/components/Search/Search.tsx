@@ -1,25 +1,24 @@
 import NavBar from "../NavBar/NavBar";
 import { useState, useEffect } from "react";
-import "./Search.css"
+import { useNavigate, useLocation } from "react-router-dom";
+import "./Search.css";
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [submittedQuery, setSubmittedQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-
-  const handleInputChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formattedQuery = searchQuery.replace(/\s+/g, '+');
-    setSubmittedQuery(formattedQuery);
-  };
+  const navigate = useNavigate(); // Use the useNavigate hook
+  const location = useLocation();
 
   useEffect(() => {
-    if (submittedQuery) {
-      fetch(`http://127.0.0.1:8000/reading-hub/articles/all/?search=${submittedQuery}`)
+    // Extract the search query from the URL parameter
+    const queryParam = new URLSearchParams(location.search).get('q');
+
+    // Set the initial value of searchQuery based on the query parameter
+    setSearchQuery(queryParam || '');
+
+    // Fetch data from the backend based on the search query
+    if (queryParam) {
+      fetch(`http://127.0.0.1:8000/reading-hub/articles/all/?search=${encodeURIComponent(queryParam)}`)
         .then((response) => {
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -33,7 +32,23 @@ const Search = () => {
           console.error("Error fetching article data:", error);
         });
     }
-  }, [submittedQuery]);
+  }, [location.search]);
+
+  const handleInputChange = (e) => {
+    const inputValue = e.target.value;
+    setSearchQuery(inputValue);
+
+    // Update the URL when the user types in the search bar
+    navigate(`/search?q=${encodeURIComponent(inputValue)}`);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formattedQuery = searchQuery.replace(/\s+/g, '+');
+    
+    // Append the search query to the URL
+    navigate(`/search?q=${formattedQuery}`);
+  };
 
   return (
     <div className="container">
@@ -52,7 +67,7 @@ const Search = () => {
         </button>
       </form>
 
-      {Array.isArray(searchResults) && searchResults.length > 0 && (
+      {Array.isArray(searchResults) && searchResults.length > 0 ? (
         <div className="mt-3">
           {searchResults.map((result, index) => (
             <div className="search-result-card" key={result.id}>
@@ -91,9 +106,9 @@ const Search = () => {
             </div>
           ))}
         </div>
+      ) : (
+        <h3><br/>No results found</h3>
       )}
-
-
     </div>
   );
 };

@@ -12,7 +12,9 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/articles/:created_at_date/:slug" element={<ArticlePage />} />
-        <Route path="/articles/search" element={<Search/>}/>
+        <Route path="/search" element={<Search />} />
+        {/* Add a route with a parameter for search query */}
+        <Route path="/search/:query" element={<Search />} />
       </Routes>
     </Router>
   );

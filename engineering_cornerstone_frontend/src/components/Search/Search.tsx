@@ -113,7 +113,7 @@ const Search = () => {
           ))}
         </div>
       ) : (
-        <h3><br/>No results found</h3>
+        <h3><br/>No results found. Please consider changing your search keywords.</h3>
       )}
     </div>
   );

@@ -1,15 +1,13 @@
 import NavBar from "./NavBar/NavBar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [tokens, setTokens] = useState({ access: "", refresh: "" });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log(username)
-    console.log(password)
 
     try {
       const response = await fetch("http://127.0.0.1:8000/auth/jwt/create/", {
@@ -26,9 +24,11 @@ const Login = () => {
       if (!response.ok) {
         throw new Error("Authentication failed");
       }
-      else if (response.ok){
-        console.log("Authentication success")
-      }
+
+      const data = await response.json();
+      setTokens({ access: data.access, refresh: data.refresh });
+
+      //console.log("Authentication success");
 
       // Handle successful authentication, e.g., redirect or store tokens
 
@@ -37,6 +37,12 @@ const Login = () => {
       // Handle login error, e.g., display an error message to the user
     }
   };
+
+  useEffect(() => {
+    console.log("Updated Access Token:", tokens.access);
+    console.log("Updated Refresh Token:", tokens.refresh);
+  }, [tokens]);
+
 
   return (
     <div className="container">

@@ -1,11 +1,37 @@
 import NavBar from "../NavBar/NavBar";
+import { ChangeEvent, FormEvent } from "react";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Search.css";
 
+interface Author {
+  id: number;
+  first_name: string;
+  last_name: string;
+}
+
+interface Category {
+  id: number;
+  title: string;
+}
+
+interface Article {
+  id: number;
+  created_at_date: string;
+  authors: Author[];
+  category: Category[];
+  slug: string;
+  title: string;
+  content: string;
+  content_just_text: string;
+  image_url: string;
+}
+
+
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState<Article[]>([]);
+
   const navigate = useNavigate(); // Use the useNavigate hook
   const location = useLocation();
 
@@ -22,7 +48,7 @@ const Search = () => {
     }
   }, [location.search]);
 
-  const fetchSearchResults = (query) => {
+  const fetchSearchResults = (query: string) => {
     fetch(`http://127.0.0.1:8000/reading-hub/articles/all/?search=${encodeURIComponent(query)}`)
       .then((response) => {
         if (!response.ok) {
@@ -38,17 +64,17 @@ const Search = () => {
       });
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formattedQuery = searchQuery.replace(/\s+/g, '+');
-
+  
     // Fetch data from the backend based on the search query
     fetchSearchResults(formattedQuery);
-
+  
     // Update the URL when the user submits the form
     navigate(`/search?q=${formattedQuery}`);
   };

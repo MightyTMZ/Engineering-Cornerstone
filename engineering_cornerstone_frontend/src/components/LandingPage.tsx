@@ -1,18 +1,24 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import NavBar from "./NavBar/NavBar";
-import "./LandingPage.css"
+import "./LandingPage.css";
 
+interface Article {
+  id: number;
+  created_at_date: string;
+  slug: string;
+  title: string;
+  content: string;
+}
 
 const LandingPage = () => {
   // Sample data for the recent articles
-  const recentArticles = [
+  const recentArticles: { title: string; content: string }[] = [
     { title: 'Article 1', content: 'Content for Article 1' },
     { title: 'Article 2', content: 'Content for Article 2' },
     { title: 'Article 3', content: 'Content for Article 3' },
   ];
 
-  const [trendingArticles, setTrendingArticles] = useState([]);
+  const [trendingArticles, setTrendingArticles] = useState<Article[]>([]);
   useEffect(() => {
     fetch(`http://127.0.0.1:8000/reading-hub/articles/trending/`)
       .then((response) => {
@@ -21,7 +27,7 @@ const LandingPage = () => {
         }
         return response.json();
       })
-      .then((data) => {
+      .then((data: Article[]) => {
         setTrendingArticles(data);
       })
       .catch((error) => {

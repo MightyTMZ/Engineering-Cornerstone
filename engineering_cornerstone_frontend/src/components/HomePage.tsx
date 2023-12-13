@@ -1,4 +1,15 @@
 import NavBar from "./NavBar/NavBar";
+import { useState, useEffect } from "react";
+
+interface Article {
+  id: number;
+  created_at_date: string;
+  slug: string;
+  title: string;
+  content: string;
+  // Add other properties based on your API response
+}
+
 
 const HomePage = () => {
   // Sample data for the recent articles
@@ -8,7 +19,7 @@ const HomePage = () => {
     { title: 'Article 3', content: 'Content for Article 3' },
   ];
 
-  const [trendingArticles, setTrendingArticles] = useState([]);
+  const [trendingArticles, setTrendingArticles] = useState<Article[]>([]);
   useEffect(() => {
     fetch(`http://127.0.0.1:8000/reading-hub/articles/trending/`)
       .then((response) => {

@@ -55,7 +55,7 @@ const HomePage = () => {
           </div>
           <div className="col-lg-6">
             <img
-              src="https://media.istockphoto.com/id/1154341677/photo/industry-and-technology-concept-industry-4-0.jpg?s=612x612&w=0&k=20&c=UgbGbl1oTYa837cA2UQcteWD3Rt_W1Pzujo_0i9Q82E="
+              src="https://t3.ftcdn.net/jpg/05/92/03/18/360_F_592031814_btPCnkAJXUzN3VvKzTYM30Lnq3ohhuzu.jpg"
               alt="Engineering Image"
               className="img-fluid"
             />

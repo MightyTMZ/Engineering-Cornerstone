@@ -55,6 +55,9 @@ const SignUp = () => {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossOrigin="anonymous"></script>
+        We are sorry to say that this feature is currently unavailable. We are currently working to add a user sign up and login page. 
+      We appreciate your kind patience!
+      <br/>
     </div>
   )
 }

@@ -87,6 +87,8 @@ const Login = () => {
           </div>
         </div>
       </div>
+      We are sorry to say that this feature is currently unavailable. We are currently working to add a user sign up and login page. 
+      We appreciate your kind patience!
     </div>
   );
 };

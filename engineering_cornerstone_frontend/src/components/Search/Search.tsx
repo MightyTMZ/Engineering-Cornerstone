@@ -101,7 +101,7 @@ const Search = () => {
 
       {Array.isArray(searchResults) && searchResults.length > 0 ? (
         <div className="mt-3">
-          {searchResults.map((result, index) => (
+          {searchResults.map((result) => (
             <div className="search-result-card" key={result.id}>
               <div className="search-result-content">
                 <a className="search-result-title" 

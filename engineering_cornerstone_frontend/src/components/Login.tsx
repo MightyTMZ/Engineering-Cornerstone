@@ -1,14 +1,14 @@
 import NavBar from "./NavBar/NavBar";
-import { useState, useEffect } from "react";
+import { useState, useEffect, FormEvent } from "react";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [tokens, setTokens] = useState({ access: "", refresh: "" });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+  
     try {
       const response = await fetch("http://127.0.0.1:8000/auth/jwt/create/", {
         method: "POST",
@@ -20,21 +20,16 @@ const Login = () => {
           password: password,
         }),
       });
-
+  
       if (!response.ok) {
         throw new Error("Authentication failed");
       }
-
+  
       const data = await response.json();
       setTokens({ access: data.access, refresh: data.refresh });
-
-      //console.log("Authentication success");
-
-      // Handle successful authentication, e.g., redirect or store tokens
-
+    
     } catch (error) {
       console.error("Login error:", error);
-      // Handle login error, e.g., display an error message to the user
     }
   };
 

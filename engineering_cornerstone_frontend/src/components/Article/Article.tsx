@@ -22,7 +22,7 @@ const Article: React.FC = () => {
   const [article, setArticle] = useState<any>(null);
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/reading-hub/articles/${created_at_date}/${slug}/`)
+    fetch(`https://engineeringcornerstone.pythonanywhere.com/reading-hub/articles/${created_at_date}/${slug}/`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);

@@ -49,7 +49,7 @@ const Search = () => {
   }, [location.search]);
 
   const fetchSearchResults = (query: string) => {
-    fetch(`http://127.0.0.1:8000/reading-hub/articles/all/?search=${encodeURIComponent(query)}`)
+    fetch(`https://engineeringcornerstone.pythonanywhere.com/reading-hub/articles/all/?search=${encodeURIComponent(query)}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);

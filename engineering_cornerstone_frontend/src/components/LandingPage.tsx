@@ -20,7 +20,7 @@ const LandingPage = () => {
 
   const [trendingArticles, setTrendingArticles] = useState<Article[]>([]);
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/reading-hub/articles/trending/`)
+    fetch(`https://engineeringcornerstone.pythonanywhere.com/reading-hub/articles/trending/`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);

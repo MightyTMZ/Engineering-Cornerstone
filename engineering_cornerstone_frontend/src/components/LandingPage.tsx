@@ -8,6 +8,7 @@ interface Article {
   slug: string;
   title: string;
   content: string;
+  content_just_text: string;
 }
 
 const LandingPage = () => {
@@ -54,12 +55,12 @@ const LandingPage = () => {
             <h2 className="mb-3">Latest</h2>
             {trendingArticles.slice(0, 3).map((article) => (
               <div key={article.id}>
-                <a href={`articles/${article.created_at_date}/${article.slug}`}
+                <a href={`/#/articles/${article.created_at_date}/${article.slug}`}
                 className="trending-article"
                 >
                   {article.title}
                 </a>
-                <p style={{ overflow: 'hidden', height: '50px' }}>{article.content}</p>
+                <p style={{ overflow: 'hidden', height: '50px' }}>{article.content_just_text}</p>
               </div>
             ))}
           </div>

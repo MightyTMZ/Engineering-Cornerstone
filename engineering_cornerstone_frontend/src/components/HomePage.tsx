@@ -7,6 +7,7 @@ interface Article {
   slug: string;
   title: string;
   content: string;
+  content_just_text: string;
   // Add other properties based on your API response
 }
 
@@ -60,7 +61,7 @@ const HomePage = () => {
                 >
                   {article.title}
                 </a>
-                <p style={{ overflow: 'hidden', height: '50px' }}>{article.content}</p>
+                <p style={{ overflow: 'hidden', height: '50px' }}>{article.content_just_text}</p>
               </div>
             ))}
           </div>

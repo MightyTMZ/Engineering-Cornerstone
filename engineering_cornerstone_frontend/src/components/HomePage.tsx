@@ -55,7 +55,7 @@ const HomePage = () => {
             <h2 className="mb-3">Latest</h2>
             {trendingArticles.slice(0, 3).map((article) => (
               <div key={article.id}>
-                <a href={`articles/${article.created_at_date}/${article.slug}`}
+                <a href={`/#/articles/${article.created_at_date}/${article.slug}`}
                 className="trending-article"
                 >
                   {article.title}

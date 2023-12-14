@@ -16,7 +16,7 @@ const NavBar = () => {
                             <a className="nav-link" href="/">Home</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/search/">Search</a>
+                            <a className="nav-link" href="/#/search/">Search</a>
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" id="megaMenuDropdown" role="button"
@@ -83,10 +83,10 @@ const NavBar = () => {
                     </ul>
                     <ul className="navbar-nav" style={{ marginLeft: 'auto' }}>
                         <li className="nav-item">
-                            <a className="nav-link" href="/sign-up/">Sign Up</a>
+                            <a className="nav-link" href="/#/sign-up/">Sign Up</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/login/">Login</a>
+                            <a className="nav-link" href="/#/login/">Login</a>
                         </li>
                     </ul>
                 </div>

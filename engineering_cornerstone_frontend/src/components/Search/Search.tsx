@@ -57,10 +57,12 @@ const Search = () => {
         return response.json();
       })
       .then((data) => {
+        console.log(data)
         setSearchResults(data);
       })
       .catch((error) => {
         console.error("Error fetching article data:", error);
+
       });
   };
 
@@ -106,7 +108,7 @@ const Search = () => {
               <div className="search-result-content">
                 <a className="search-result-title" 
                 style={{textDecoration: "none"}}
-                href={"/articles/" + result.created_at_date + '/' + result.slug}>{result.title}</a>
+                href={"/#/articles/" + result.created_at_date + '/' + result.slug}>{result.title}</a>
                 <div className="search-result-meta">
                   {result.created_at_date} | By&nbsp;
                   {result.authors.length === 1 ? (

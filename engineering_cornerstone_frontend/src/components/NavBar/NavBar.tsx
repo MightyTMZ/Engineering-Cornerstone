@@ -1,11 +1,13 @@
 import './NavBar.css'
+import logo from "./Bright Engineer Cornerstone logo.png"
 
 const NavBar = () => {
     return (
       <>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <div className="container-fluid">
-                <a className="navbar-brand" href="/">Engineering Cornerstone</a>
+        <nav className="navbar navbar-expand-lg navbar-light bg-dark">
+            <div className="container-fluid" >
+                <a className="navbar-brand" href="/"><img src={logo} alt="Engineering Cornerstone" style={{height: "50px"}} /> 
+                <span style={{color: 'white'}}>Engineering Cornerstone</span></a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -13,14 +15,14 @@ const NavBar = () => {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <a className="nav-link" href="/">Home</a>
+                            <a className="nav-link" href="/" style={{color: 'white'}}>Home</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/#/search/">Search</a>
+                            <a className="nav-link" href="/#/search/" style={{color: 'white'}}>Search</a>
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" id="megaMenuDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                                data-bs-toggle="dropdown" aria-expanded="false" style={{color: 'white'}}>
                                 Topics
                             </a>
                             <div className="dropdown-menu mega-menu" aria-labelledby="megaMenuDropdown">
@@ -83,10 +85,10 @@ const NavBar = () => {
                     </ul>
                     <ul className="navbar-nav" style={{ marginLeft: 'auto' }}>
                         <li className="nav-item">
-                            <a className="nav-link" href="/#/sign-up/">Sign Up</a>
+                            <a className="nav-link" href="/#/sign-up/" style={{color: 'white'}}>Sign Up</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/#/login/">Login</a>
+                            <a className="nav-link" href="/#/login/" style={{color: 'white'}}>Login</a>
                         </li>
                     </ul>
                 </div>

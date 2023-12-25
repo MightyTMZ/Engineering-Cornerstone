@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Article, Author, Category
+from .models import Article, Author, Category, Customer
 from users.serializers import *
 
 class AuthorSerializer(serializers.ModelSerializer):
@@ -24,3 +24,11 @@ class ArticleSerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'slug', 'image_url', 'category', 'content', 'authors', 'created_at', 'created_at_date', 
                   'updated_at', 'trending']
 
+
+class CustomerSerializer(serializers.ModelSerializer):
+    first_name = serializers.CharField(source='user.first_name', read_only=True)
+    last_name = serializers.CharField(source='user.last_name', read_only=True)
+
+    class Meta:
+        model = Customer
+        fields = ['id', 'user_id', 'first_name', 'last_name']

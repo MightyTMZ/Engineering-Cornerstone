@@ -1,11 +1,14 @@
-from django.shortcuts import render
-from rest_framework import generics, filters
+from rest_framework.response import Response
+from rest_framework import generics, filters, viewsets
+from rest_framework.mixins import CreateModelMixin, ListModelMixin, DestroyModelMixin, RetrieveModelMixin, UpdateModelMixin
+from rest_framework.viewsets import GenericViewSet
 from rest_framework.generics import RetrieveAPIView
+from rest_framework.decorators import action
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView
-from .models import Article
+from .models import *
 from datetime import datetime
-from .serializers import ArticleSerializer
+from .serializers import *
 from .permissions import *
 
 
@@ -36,6 +39,32 @@ class TrendingArticles(generics.ListCreateAPIView):
     serializer_class = ArticleSerializer
 
 
+class AdminOrAuthenticatedMixin:
+    def get_permissions(self):
+        if self.action in ['create', 'update', 'partial_update', 'destroy']:
+            permission_classes = [permissions.IsAdminUser]
+        else:
+            permission_classes = [permissions.IsAuthenticated]
 
+        return [permission() for permission in permission_classes]
 
+# Use the mixin in your CustomerViewSet
+class CustomerViewSet(
+    AdminOrAuthenticatedMixin,
+    CreateModelMixin,
+    RetrieveModelMixin,
+    ListModelMixin,
+    UpdateModelMixin,
+    DestroyModelMixin,
+    GenericViewSet
+):
+    queryset = Customer.objects.all()
+    serializer_class = CustomerSerializer
 
+    @action(detail=False, methods=['get'])
+    def me(self, request):
+        # Your logic to retrieve the current customer (logged-in user)
+        current_customer = request.user.customer  # Assuming you have a one-to-one relationship between User and Customer
+
+        serializer = self.get_serializer(current_customer)
+        return Response(serializer.data)

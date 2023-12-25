@@ -1,16 +1,20 @@
 import NavBar from "./NavBar/NavBar";
 import { useState, useEffect, FormEvent } from "react";
 
+
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [tokens, setTokens] = useState({ access: "", refresh: "" });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
+
     try {
-      const response = await fetch("https://engineeringcornerstone.pythonanywhere.com/auth/jwt/create/", {
+      setLoading(true);
+      const response = await fetch("http://127.0.0.1:8000/auth/jwt/create/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -20,25 +24,52 @@ const Login = () => {
           password: password,
         }),
       });
-  
+
       if (!response.ok) {
         throw new Error("Authentication failed");
       }
-  
+
       const data = await response.json();
       setTokens({ access: data.access, refresh: data.refresh });
-    
+      setError(""); // Clear any previous errors
     } catch (error) {
+      setError("Login failed. Please check your credentials.");
       console.error("Login error:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
+
   useEffect(() => {
-    console.log("Updated Access Token:", tokens.access);
-    console.log("Updated Refresh Token:", tokens.refresh);
+    const accessToken = tokens.access;
+    if (accessToken) {
+      console.log(accessToken);
+      console.log(tokens.refresh);
+      fetchUserProfile(accessToken);
+    }
   }, [tokens]);
 
-
+  const fetchUserProfile = async (accessToken: string) => {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/auth/users/me/", {
+        method: "GET",  // Use GET instead of POST
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `JWT ${accessToken}`,
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to fetch user profile");
+      }
+  
+      const userData = await response.json();
+      console.log("User Profile Data:", userData);
+    } catch (error) {
+      console.error("Fetch user profile error:", error);
+    }
+  };
   return (
     <div className="container">
       <NavBar />
@@ -73,19 +104,24 @@ const Login = () => {
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
-                  <button type="submit" className="btn btn-primary mt-4">
-                    Login
+                  <button type="submit" className="btn btn-primary mt-4" disabled={loading}>
+                    {loading ? "Logging in..." : "Login"}
                   </button>
+                  {error && <p className="text-danger mt-2">{error}</p>}
                 </form>
               </div>
             </div>
           </div>
         </div>
       </div>
-      We are sorry to say that this feature is currently unavailable. We are currently working to add a user sign up and login page. 
-      We appreciate your kind patience!
+      <div className="container">
+        {userData}
+      </div>
     </div>
   );
 };
 
+
+// the next step after the login is successful and the user info is given, 
+// store the following data in the HttpOnly Cookie
 export default Login;

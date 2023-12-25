@@ -1,6 +1,9 @@
 from django.db import models
 from users.models import CustomUser
 from django.utils.text import slugify
+from django.conf import settings
+from users.models import CustomUser
+
 
 
 class Category(models.Model):
@@ -69,6 +72,14 @@ class Article(models.Model):
         # Construct the URL using created_at and slugified title
         return f'/{self.created_at.date()}/{self.slug}/'
 
+
+class Customer(models.Model):
+    user = models.OneToOneField(
+        CustomUser, on_delete=models.CASCADE)
+    
+    def __str__(self) -> str:
+        return f"{self.user.first_name} {self.user.last_name}"
+    
 
 
 # url structure:

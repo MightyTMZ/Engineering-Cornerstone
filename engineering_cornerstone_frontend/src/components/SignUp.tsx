@@ -13,34 +13,10 @@ const SignUp = () => {
                         <h4>Join Engineering Cornerstone today!</h4>
                     </div>
                     <div className="card-body">
-                        <form>
-                            <div className="form-group">
-                                <label htmlFor="first-name">First name</label>
-                                <input type="text" className="form-control mt-1" id="first-name" placeholder="First name"/>
-                            </div>
-                            <div className="form-group mt-2">
-                                <label htmlFor="last-name">Last name</label>
-                                <input type="password" className="form-control mt-1" id="last-name" placeholder="Last name"/>
-                            </div>
-                            <div className="form-group mt-2">
-                                <label htmlFor="email">Email</label>
-                                <input type="email" className="form-control mt-1" id="email" placeholder="Email"/>
-                            </div>
-                            <div className="form-group mt-2">
-                                <label htmlFor="username">Username</label>
-                                <input type="text" className="form-control mt-1" id="username" placeholder="Username"/>
-                            </div>
-                            <div className="form-group mt-2">
-                                <label htmlFor="password">Password</label>
-                                <input type="password" className="form-control mt-1" id="username" placeholder="Password"/>
-                            </div>
-                            <div className="form-group mt-2">
-                                <label htmlFor="password">Confirm Password</label>
-                                <input type="password" className="form-control mt-1" id="confirm-password" placeholder="Re-enter your password"/>
-                            </div>
-                            
-                            <button type="submit" className="btn btn-primary mt-4">Sign Up</button>
-                        </form>
+                        We are currently not offering a sign up account form. 
+                        If you are interested in having an account, please fill in the form 
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeIdzhFo07AWGFMLsC5l4FrBPTpbCdJq8SIhrT5P6t6sQI-KQ/viewform"
+                        style={{textDecoration: 'none'}}> here</a>.
                     </div>
                 </div>
             </div>
@@ -55,8 +31,6 @@ const SignUp = () => {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossOrigin="anonymous"></script>
-        We are sorry to say that this feature is currently unavailable. We are currently working to add a user sign up and login page. 
-      We appreciate your kind patience!
       <br/>
     </div>
   )

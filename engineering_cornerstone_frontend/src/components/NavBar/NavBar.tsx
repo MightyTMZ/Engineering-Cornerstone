@@ -5,14 +5,21 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../AppContext'; // we import the file containing the variable of whether the user is authenticated or not
 
 
-
 const NavBar = () => {
   const navigate = useNavigate();
-  const { isAuthenticated } = useAppContext();
+  const { isAuthenticated, setIsAuthenticated } = useAppContext();
 
+  const handleLogout = () => {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+
+    // Reset authentication state
+    setIsAuthenticated(false);
+    navigate('/login');
+  };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-light bg-dark whole-navbar">
       <div className="container-fluid">
         <Link to="/" className="navbar-brand">
           <img src={logo} alt="Engineering Cornerstone" style={{ height: '50px' }} />
@@ -116,29 +123,31 @@ const NavBar = () => {
           </ul>
 
           <ul className="navbar-nav ms-auto">
-                {isAuthenticated ? (
-                    <li className="nav-item">
+              {isAuthenticated ? (
+                <> <li className="nav-item">
+                    <button className="nav-link btn btn-link mr-2" onClick={handleLogout} style={{ color: 'white' }}>
+                      Logout
+                    </button>
+                  </li>
+                  <li className="nav-item">
                     <ProfileIcon />
-                    </li>
-                ) : (
-                    <>
-                    <li className="nav-item">
-                        <Link to="/sign-up" className="nav-link" style={{ color: 'white' }}>
-                        Sign Up
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link
-                        to="/login"
-                        className="nav-link"
-                        style={{ color: 'white' }}
-                        onClick={() => navigate('/login')}
-                        >
-                        Login
-                        </Link>
-                    </li>
-                    </>
-                )}
+                  </li>
+                 
+                </>
+              ) : (
+                <>
+                  <li className="nav-item">
+                    <Link to="/sign-up" className="nav-link" style={{ color: 'white' }}>
+                      Sign Up
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link to="/login" className="nav-link" style={{ color: 'white' }}>
+                      Login
+                    </Link>
+                  </li>
+                </>
+              )}
                 </ul>
 
         </div>

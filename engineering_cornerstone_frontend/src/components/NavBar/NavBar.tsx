@@ -1,32 +1,63 @@
 import './NavBar.css'
 import logo from "./Bright Engineer Cornerstone logo.png"
+import ProfileIcon from '../Profile Icon/ProfileIcon';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAppContext } from '../../AppContext'; // we import the file containing the variable of whether the user is authenticated or not
+
+
 
 const NavBar = () => {
-    return (
-      <>
-        <nav className="navbar navbar-expand-lg navbar-light bg-dark">
-            <div className="container-fluid" >
-                <a className="navbar-brand" href="/"><img src={logo} alt="Engineering Cornerstone" style={{height: "50px"}} /> 
-                <span style={{color: 'white'}}>Engineering Cornerstone</span></a>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <a className="nav-link" href="/" style={{color: 'white'}}>Home</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="/#/search/" style={{color: 'white'}}>Search</a>
-                        </li>
-                        <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="#" id="megaMenuDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false" style={{color: 'white'}}>
-                                Topics
-                            </a>
-                            <div className="dropdown-menu mega-menu" aria-labelledby="megaMenuDropdown">
-                            <div className="container">
+  const navigate = useNavigate();
+  const { isAuthenticated } = useAppContext();
+
+
+  return (
+    <nav className="navbar navbar-expand-lg navbar-light bg-dark">
+      <div className="container-fluid">
+        <Link to="/" className="navbar-brand">
+          <img src={logo} alt="Engineering Cornerstone" style={{ height: '50px' }} />
+          <span style={{ color: 'white' }}>Engineering Cornerstone</span>
+        </Link>
+
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link to="/" className="nav-link" style={{ color: 'white' }}>
+                Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/search" className="nav-link" style={{ color: 'white' }}>
+                Search
+              </Link>
+            </li>
+            {/* Add your other navigation items here */}
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle"
+                href="#"
+                id="megaMenuDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style={{ color: 'white' }}
+              >
+                Topics
+              </a>
+              <div className="dropdown-menu mega-menu" aria-labelledby="megaMenuDropdown">
+                <div className="container">
                                 <div className="row pt-3 ">
                                     <div className="col-md-5 custom-col">
                                         <h5>Aerospace and Mechanical</h5>
@@ -78,26 +109,42 @@ const NavBar = () => {
                                         <a className="dropdown-item" href="#">Renewable Energy Engineering</a>
                                     </div>
                                     
-                                </div>
-                            </div>
-                            </div>
-                        </li>
-                    </ul>
-                    <ul className="navbar-nav" style={{ marginLeft: 'auto' }}>
-                        <li className="nav-item">
-                            <a className="nav-link" href="/#/sign-up/" style={{color: 'white'}}>Sign Up</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="/#/login/" style={{color: 'white'}}>Login</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+                                    </div>
+                                    </div>
+              </div>
+            </li>
+          </ul>
 
-      </>
-    );
-  };
-  
-  export default NavBar;
-  
+          <ul className="navbar-nav ms-auto">
+                {isAuthenticated ? (
+                    <li className="nav-item">
+                    <ProfileIcon />
+                    </li>
+                ) : (
+                    <>
+                    <li className="nav-item">
+                        <Link to="/sign-up" className="nav-link" style={{ color: 'white' }}>
+                        Sign Up
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link
+                        to="/login"
+                        className="nav-link"
+                        style={{ color: 'white' }}
+                        onClick={() => navigate('/login')}
+                        >
+                        Login
+                        </Link>
+                    </li>
+                    </>
+                )}
+                </ul>
+
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default NavBar;

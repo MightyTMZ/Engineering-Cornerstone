@@ -47,9 +47,10 @@ const Search = () => {
       fetchSearchResults(queryParam);
     }
   }, [location.search]);
+  const backendServerAddress = "http://127.0.0.1:8000";
 
   const fetchSearchResults = (query: string) => {
-    fetch(`https://engineeringcornerstone.pythonanywhere.com/reading-hub/articles/all/?search=${encodeURIComponent(query)}`)
+    fetch(`${backendServerAddress}/reading-hub/articles/all/?search=${encodeURIComponent(query)}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -122,7 +123,7 @@ const Search = () => {
                     ))
                   )}
                 </div>
-                <div className="search-result-description">{result.content_just_text}</div>
+                <div className="search-result-description">{result.content_just_text.slice(0, 75)}...</div>
                 {result.category.length === 1 ? (
                   <div className="search-result-category">{result.category[0].title}</div>
                 ) : (

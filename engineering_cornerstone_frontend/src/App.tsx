@@ -1,5 +1,5 @@
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
-import LandingPage from "./components/LandingPage";
+import LandingPage from "./components/LandingHomePage/LandingPage";
 import ArticlePage from "./components/ArticlePage";
 import Search from "./components/Search/Search";
 import SignUp from "./components/SignUp";

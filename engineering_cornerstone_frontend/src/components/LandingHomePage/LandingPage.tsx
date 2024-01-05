@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
-import NavBar from "./NavBar/NavBar";
+import NavBar from "../NavBar/NavBar";
 import "./LandingPage.css";
+import Background1 from "./background1.png";
+import Background2 from "./background2.png";
+import Background3 from "./background3.png";
+import Background4 from "./background4.png";
+import Background5 from "./background5.png";
+import Background6 from "./background6.png";
+import Background7 from "./background7.jpg";
 
 interface Author {
   first_name: string;
@@ -58,6 +65,31 @@ const LandingPage = () => {
       });
   }, []);
 
+  const formatDate = (dateString: string) => {
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    const formattedDate = new Date(dateString).toLocaleDateString(
+      undefined,
+      options
+    );
+
+    return formattedDate;
+  };
+
+  const jumbotrons = [
+    Background1,
+    Background2,
+    Background3,
+    Background4,
+    Background5,
+    Background6,
+    Background7,
+  ];
+
   return (
     <div className="landing-page">
       {/* Header Section */}
@@ -65,7 +97,8 @@ const LandingPage = () => {
         <div className="container">
           <NavBar />
           <p className="pt-3">
-            Connect with the vast engineering world to learn about news, insights and more!
+            Connect with the vast engineering world to learn about news,
+            insights and more!
           </p>
         </div>
       </header>
@@ -84,23 +117,29 @@ const LandingPage = () => {
                   >
                     {article.title}
                   </a>
-                  <p style={{ overflow: "hidden", height: "50px" }}>
-                    {article.content_just_text}
-                  </p>
+                  <p className="text-success">{formatDate(article.created_at_date)}</p>
+                  <p>{article.content_just_text.slice(0, 75)}...</p>
                 </div>
               ))}
             </div>
             <div className="col-lg-6">
               <img
-                src="https://t3.ftcdn.net/jpg/05/92/03/18/360_F_592031814_btPCnkAJXUzN3VvKzTYM30Lnq3ohhuzu.jpg"
+                src={jumbotrons[Math.round(7 * Math.random())]}
                 alt="Engineering Image"
                 className="img-fluid"
               />
+              <p className="mt-2">
+                The world of engineering has come a long way, but it still has a
+                long way to go. As we stand on the shoulders of past
+                innovations, the blueprint for the future unfolds, waiting for
+                the creators of tomorrow to design the next chapter.
+              </p>
             </div>
           </div>
+          <hr style={{height: "2px"}}/>
         </div>
       </section>
-
+      
       {/* Recent Articles Section */}
       <section className="recent-articles pt-5">
         <div className="container">
@@ -150,6 +189,7 @@ const LandingPage = () => {
                     />
                     <p>{article.content_just_text.slice(0, 75)}...</p>
                   </div>
+                  <p className="text-white">{formatDate(article.created_at_date)}</p>
                 </div>
               </div>
             ))}

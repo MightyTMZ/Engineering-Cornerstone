@@ -251,7 +251,7 @@ const NavBar = () => {
                       </a>
                       <a
                         className="dropdown-item"
-                        href="/#/search?q=computer-science"
+                        href="/#/search?q=computer+science"
                       >
                         Computer Science
                       </a>

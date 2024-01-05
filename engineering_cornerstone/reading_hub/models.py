@@ -3,6 +3,7 @@ from users.models import CustomUser
 from django.utils.text import slugify
 from django.conf import settings
 from users.models import CustomUser
+from tags.models import Tag
 
 
 
@@ -33,7 +34,51 @@ magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
 consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 """
-
+article_html_template = """
+<section>
+        <h4></h4>
+        <p></p>
+    </section>
+    
+    <section>
+        <h4></h4>
+        <p></p>
+    </section>
+    
+    <section>
+        <h4></h4>
+        <p></p>
+    </section>
+    
+    <section>
+        <h4></h4>
+        <p></p>
+    </section>
+    
+    <section>
+        <h4></h4>
+        <p></p>
+    </section>
+    
+    <section>
+        <h4></h4>
+        <p></p>
+    </section>
+    
+    <section>
+        <h4></h4>
+        <p></p>
+    </section>
+    
+    <section>
+        <h4></h4>
+        <p></p>
+    </section>
+    
+    <section>
+        <p></p>
+    </section>
+"""
 
 class Article(models.Model):
     @property
@@ -47,7 +92,7 @@ class Article(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(default="-", editable=False, max_length=250)
     image_url = models.CharField(max_length=2083, default="-")
-    content = models.TextField(max_length=10000)
+    content = models.TextField(max_length=10000, default=article_html_template)
     content_just_text = models.TextField(max_length=10000, default=lorem_ipsum_40_words)
     """On the home page, landing page, search results page, the article is rendered with the first 30-40 words
     as part of the thumbnail. Since the "content" field of the article model class stores the markup, it cannot be used as
@@ -59,6 +104,7 @@ class Article(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     trending = models.BooleanField(default=False)
+    tags = models.ManyToManyField(Tag)
 
     def __str__(self) -> str:
         return f"{self.title} - by {self.authors} - Trending {self.trending} - {self.created_at}"

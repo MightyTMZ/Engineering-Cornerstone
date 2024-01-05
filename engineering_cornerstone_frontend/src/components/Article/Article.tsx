@@ -59,10 +59,10 @@ const Article: React.FC = () => {
     <>
       <div className="container-fluid mb-5">
         <NavBar />
-        {/*  */}
+        {/* */}
         <div
           className={
-            window.innerWidth > 800 ? "container" : "article-container"
+            window.innerWidth > 1350 ? "container" : "article-container"
           }
           style={{ paddingRight: "20%", paddingLeft: "20%", marginTop: "2rem" }}
         >

@@ -23,6 +23,7 @@ admin.site.site_header = "Engineering Cornerstone Admin"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("reading-hub/", include('reading_hub.urls')),
+    path("tags/", include('tags.urls')),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
     path("__debug__", include(debug_toolbar.urls))

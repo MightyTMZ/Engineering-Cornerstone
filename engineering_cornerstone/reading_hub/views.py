@@ -1,11 +1,15 @@
 from rest_framework.response import Response
 from rest_framework import generics, filters, viewsets
+from rest_framework.filters import SearchFilter
 from rest_framework.mixins import CreateModelMixin, ListModelMixin, DestroyModelMixin, RetrieveModelMixin, UpdateModelMixin
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.decorators import action
+from django_filters.rest_framework import DjangoFilterBackend
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from .models import *
 from datetime import datetime
 from .serializers import *
@@ -16,7 +20,8 @@ class ArticleList(generics.ListCreateAPIView):
     queryset = Article.objects.all().order_by('-created_at')
     permission_classes = [IsAdminOrReadOnly]
     serializer_class = ArticleSerializer
-    filter_backends = [filters.SearchFilter]
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    filterset_fields = {'tags__label': ['icontains']} 
     search_fields = ['title', 'content', 'category__title', 'authors__first_name', 'authors__last_name']
 
 

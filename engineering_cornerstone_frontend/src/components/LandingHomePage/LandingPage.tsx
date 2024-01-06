@@ -65,6 +65,25 @@ const LandingPage = () => {
       });
   }, []);
 
+  const [biographyArticles, setBiographyArticles] = useState<Article[]>([]);
+  useEffect(() => {
+    fetch(
+      `${backendServerAddress}/reading-hub/articles/all/?tags__label__icontains=biography`
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data: Article[]) => {
+        setBiographyArticles(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching article data:", error);
+      });
+  }, []);
+
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = {
       weekday: "long",
@@ -117,7 +136,9 @@ const LandingPage = () => {
                   >
                     {article.title}
                   </a>
-                  <p className="text-success">{formatDate(article.created_at_date)}</p>
+                  <p className="text-success">
+                    {formatDate(article.created_at_date)}
+                  </p>
                   <p>{article.content_just_text.slice(0, 75)}...</p>
                 </div>
               ))}
@@ -136,10 +157,10 @@ const LandingPage = () => {
               </p>
             </div>
           </div>
-          <hr style={{height: "2px"}}/>
+          <hr style={{ height: "2px" }} />
         </div>
       </section>
-      
+
       {/* Recent Articles Section */}
       <section className="recent-articles pt-5">
         <div className="container">
@@ -189,7 +210,9 @@ const LandingPage = () => {
                     />
                     <p>{article.content_just_text.slice(0, 75)}...</p>
                   </div>
-                  <p className="text-white">{formatDate(article.created_at_date)}</p>
+                  <p className="text-white">
+                    {formatDate(article.created_at_date)}
+                  </p>
                 </div>
               </div>
             ))}
@@ -248,18 +271,60 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Blank Div Box 1 */}
-      <section
-        className="blank-box"
-        style={{ width: "100%", height: "200px", backgroundColor: "blue" }}
-      >
+      {/* The Experiences They Had/Shared (biographies) section */}
+      <section className="experiences-they-shared pt-5">
         <div className="container">
+          <h2 className="pb-2">The Experiences They Shared</h2>
           <div className="row">
-            <div className="col-lg-12">
-              <div className="blank-box-content">
-                {/* Add content or leave blank as a placeholder */}
+            {biographyArticles.slice(0, 3).map((article, index) => (
+              <div key={index} className="col-lg-4 mb-4">
+                <div
+                  className="recent-article-box"
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    padding: "20px",
+                    color: "white",
+                    display: "flex",
+                    flexDirection: "column", // Set flex-direction to column
+                    alignItems: "flex-start", // Align items to the start (left)
+                    textAlign: "left", // Align text to the left
+                    paddingBottom: "20px",
+                  }}
+                >
+                  <img
+                    src={article.image_url}
+                    alt={article.title}
+                    style={{ width: "100%"}}
+                    className="pb-2"
+                  />
+                  <a
+                    href={
+                      "#/articles/" +
+                      article.created_at_date +
+                      "/" +
+                      article.slug
+                    }
+                    className="recent-article-link"
+                  >
+                    {article.title}
+                  </a>
+                  <p>
+                    By{" "}
+                    {article.authors
+                      .map(
+                        (author: any) =>
+                          `${author.first_name} ${author.last_name}`
+                      )
+                      .join(", ")}
+                  </p>
+
+                  <p className="text-white">
+                    {formatDate(article.created_at_date)}
+                  </p>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

@@ -84,6 +84,12 @@ const Article: React.FC = () => {
             style={{ width: "100%" }}
           />
           <article dangerouslySetInnerHTML={createMarkup()} />
+          <p>
+            <br />
+            <br />
+            We hope you have enjoyed reading so far! If so, feel free to search for more{" "}
+            <a href="#/search/">here</a>
+          </p>
         </div>
       </div>
     </>

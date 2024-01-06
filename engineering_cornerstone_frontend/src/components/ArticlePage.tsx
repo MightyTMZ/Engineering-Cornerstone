@@ -5,6 +5,7 @@ const ArticlePage = () => {
   return (
     <>
       <Article/>
+      
     </>
   )
 }

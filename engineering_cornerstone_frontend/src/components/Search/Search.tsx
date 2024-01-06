@@ -1,7 +1,9 @@
 import NavBar from "../NavBar/NavBar";
+import { Fragment } from "react";
 import { ChangeEvent, FormEvent } from "react";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import NotFound from "./not_found_icon.png";
 import "./Search.css";
 
 interface Author {
@@ -165,11 +167,14 @@ const Search = () => {
           ))}
         </div>
       ) : (
-        <h3>
-          <br />
-          Your search bar is likely empty or we were unable to find relevant
-          results. Please consider changing search keywords.
-        </h3>
+        <Fragment>
+          <h3>
+            <br />
+            Your search bar is likely empty or we were unable to find relevant
+            results. Please consider changing search keywords.
+          </h3>
+          <img src={NotFound} alt="" />
+        </Fragment>
       )}
     </div>
   );

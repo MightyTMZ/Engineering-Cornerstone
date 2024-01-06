@@ -145,7 +145,7 @@ const LandingPage = () => {
             </div>
             <div className="col-lg-6">
               <img
-                src={jumbotrons[Math.round(7 * Math.random())]}
+                src={jumbotrons[Math.round(6 * Math.random())]}
                 alt="Engineering Image"
                 className="img-fluid"
               />
@@ -295,7 +295,7 @@ const LandingPage = () => {
                   <img
                     src={article.image_url}
                     alt={article.title}
-                    style={{ width: "100%"}}
+                    style={{ width: "100%" }}
                     className="pb-2"
                   />
                   <a

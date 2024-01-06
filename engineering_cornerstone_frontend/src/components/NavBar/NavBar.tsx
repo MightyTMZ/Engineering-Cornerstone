@@ -37,8 +37,12 @@ const NavBar = () => {
           aria-controls="navbarNav"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          style={{ border: "2px solid white", background: "white"}}
         >
-          <span className="navbar-toggler-icon"></span>
+          <span
+            className="navbar-toggler-icon"
+            style={{ color: "white" }}
+          ></span>
         </button>
 
         <div className="collapse navbar-collapse" id="navbarNav">

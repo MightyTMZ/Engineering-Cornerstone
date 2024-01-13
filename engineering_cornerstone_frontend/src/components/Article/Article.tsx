@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import DOMPurify from "dompurify";
 import NavBar from "../NavBar/NavBar";
+// import ArticleFooter from "../ArticleFooter/ArticleFooter";
 import "./Article.css";
 
 {
@@ -57,15 +58,11 @@ const Article: React.FC = () => {
 
   return (
     <>
-      <div className="container-fluid mb-5">
-        <NavBar />
+      {" "}
+      <NavBar />
+      <div className="container mb-5">
         {/* */}
-        <div
-          className={
-            window.innerWidth > 1350 ? "container" : "article-container"
-          }
-          style={{ paddingRight: "20%", paddingLeft: "20%", marginTop: "2rem" }}
-        >
+        <div className="article-container">
           <h1>{title}</h1>
           <p>{createdAt}</p>
           {trending && (
@@ -87,9 +84,10 @@ const Article: React.FC = () => {
           <p>
             <br />
             <br />
-            We hope you have enjoyed reading so far! If so, feel free to search for more{" "}
-            <a href="#/search/">here</a>
+            We hope you have enjoyed reading so far! If so, feel free to search
+            for more <a href="#/search/">here</a>
           </p>
+          <hr />
         </div>
       </div>
     </>

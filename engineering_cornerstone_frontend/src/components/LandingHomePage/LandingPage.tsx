@@ -100,11 +100,11 @@ const LandingPage = () => {
   };
 
   const jumbotrons = [
-    Background1,
-    Background2,
+    // Background1,
+    // Background2,
     Background3,
-    Background4,
-    Background5,
+    // Background4,
+    // Background5,
     Background6,
     Background7,
   ];
@@ -145,7 +145,7 @@ const LandingPage = () => {
             </div>
             <div className="col-lg-6">
               <img
-                src={jumbotrons[Math.round(6 * Math.random())]}
+                src={jumbotrons[Math.round(2 * Math.random())]}
                 alt="Engineering Image"
                 className="img-fluid"
               />
@@ -329,16 +329,16 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Newsletter Signup Section */}
+      {/* Newsletter Signup Section 
       <section className="newsletter">
         <div className="container">
           <h2>Subscribe to Our Newsletter</h2>
           <p>Receive the latest news and updates directly to your inbox.</p>
-          {/* Add a newsletter signup form here */}
+          Add a newsletter signup form here
         </div>
-      </section>
+      </section>*/}
 
-      {/* Blank Div Box 2 */}
+      {/* Blank Div Box 2 
       <section
         className="blank-box"
         style={{ width: "100%", height: "180px", backgroundColor: "blue" }}
@@ -347,12 +347,14 @@ const LandingPage = () => {
           <div className="row">
             <div className="col-lg-12">
               <div className="blank-box-content">
-                {/* Add content or leave blank as a placeholder */}
+                Add Content here!!
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </section> 
+    
+    */}
 
       {/* Footer Section */}
       <footer className="footer">

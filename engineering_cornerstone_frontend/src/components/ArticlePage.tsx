@@ -1,13 +1,13 @@
-import Article from "./Article/Article"
-
+import Article from "./Article/Article";
+import ArticleFooter from "./ArticleFooter/ArticleFooter";
 
 const ArticlePage = () => {
   return (
     <>
-      <Article/>
-      
+      <Article />
+      <ArticleFooter />
     </>
-  )
-}
+  );
+};
 
-export default ArticlePage
+export default ArticlePage;

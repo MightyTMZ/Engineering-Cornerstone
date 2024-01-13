@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import NavBar from "../NavBar/NavBar";
 import "./LandingPage.css";
-import Background1 from "./background1.png";
-import Background2 from "./background2.png";
+// import Background1 from "./background1.png";
+// import Background2 from "./background2.png";
 import Background3 from "./background3.png";
-import Background4 from "./background4.png";
-import Background5 from "./background5.png";
+// import Background4 from "./background4.png";
+// import Background5 from "./background5.png";
 import Background6 from "./background6.png";
 import Background7 from "./background7.jpg";
 

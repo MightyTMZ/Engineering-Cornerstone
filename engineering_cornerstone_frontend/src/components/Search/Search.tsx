@@ -48,7 +48,8 @@ const Search = () => {
       fetchSearchResults(queryParam);
     }
   }, [location.search]);
-  const backendServerAddress = "http://127.0.0.1:8000";
+  const backendServerAddress =
+    "https://engineeringcornerstone.pythonanywhere.com";
 
   const fetchSearchResults = (query: string) => {
     fetch(

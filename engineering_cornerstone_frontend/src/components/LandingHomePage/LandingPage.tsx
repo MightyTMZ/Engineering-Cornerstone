@@ -29,7 +29,8 @@ interface Article {
 const LandingPage = () => {
   // Sample data for the recent articles
 
-  const backendServerAddress = "http://127.0.0.1:8000";
+  const backendServerAddress =
+    "https://engineeringcornerstone.pythonanywhere.com/";
 
   const [trendingArticles, setTrendingArticles] = useState<Article[]>([]);
   useEffect(() => {

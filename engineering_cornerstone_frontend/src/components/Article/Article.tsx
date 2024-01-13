@@ -25,7 +25,7 @@ const Article: React.FC = () => {
 
   useEffect(() => {
     fetch(
-      `http://127.0.0.1:8000/reading-hub/articles/${created_at_date}/${slug}/`
+      `https://engineeringcornerstone.pythonanywhere.com//${created_at_date}/${slug}/`
     )
       .then((response) => {
         if (!response.ok) {
